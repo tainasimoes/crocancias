@@ -66,13 +66,15 @@
 
           <article>
             <div class="card shadow">
+              <div class="border">
               <figure></figure>
               <div class="container">
-                <span class="icon">🍿</span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              </div>
+              <span class="icon">🍿</span>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
             </div>
           </article>
+          
 
           <article class="flip">
             <div class="card flip-inner">
@@ -82,6 +84,8 @@
               <div class="flip-back"></div>
             </div>
           </article>
+
+
         </div>
       </section>
 
@@ -121,8 +125,12 @@
         <div class="canvas">
           <article
             class="mouse"
+            onclick=""
+
             onmousedown="this.classList.add('down')"
+
             onmouseup="this.classList.remove('down')"
+            
             onmouseenter="this.classList.add('hover')"
             onmouseleave="this.classList.remove('hover')"
           ></article>

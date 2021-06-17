@@ -1,24 +1,29 @@
-/* Interações ================================================== */
-
-/* header 1 ======= */
 header h1 {
   background: linear-gradient(to right, #f9f, #09f, #ff9);
+  background-clip: text;
+  -moz-background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* botão 1 ======= */
+header h1:hover {
+  background: linear-gradient(to top right, #f9f, #09f, #ff9);
+  background-clip: text;
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 #botoes .btn {
   background-color: transparent;
-  position: relative;
-  overflow: hidden;
   color: #09f;
   border: 3px solid #f9f;
+  position: relative;
+  overflow: hidden;
 }
 
 #botoes .transition {
-  box-shadow: 2px 4px #09f;
+  box-shadow: 2px 4px 0px #09f;
 }
 
 #botoes .transition::before {
@@ -26,10 +31,10 @@ header h1 {
   position: absolute;
   background-color: #fff;
   width: 0%;
-  height: 325%;
+  height: 400%;
   top: 50%;
   left: -20px;
-  transform: translateY(-50%) rotate(30deg);
+  transform: translateY(-50%) rotate( 30deg );
   transition: width .4s ease;
 }
 
@@ -37,13 +42,17 @@ header h1 {
   width: 120%;
 }
 
-/* botão 2 ======= */
+
+#botoes .transition:hover::before {
+  width: 120%;
+}
+
 
 #botoes .move {
   top: 0;
   left: 0;
-  box-shadow: 0px 0px #f3f3f3;
-  transition: top .4s ease, left .4s ease, box-shadow .4s ease;
+  box-shadow: 0px 0px 0px #09f;
+  transition: box-shadow .8s ease, top .4s ease, left .4s ease;
 }
 
 #botoes .move::before {
@@ -61,18 +70,20 @@ header h1 {
 #botoes .move:hover {
   top: -2px;
   left: -2px;
-  box-shadow: 2px 4px #09f;
+  box-shadow: 2px 4px 0px #09f;
 }
 
 #botoes .move:hover::before {
-  width: 100%;
+  width: 110%;
 }
-
-/* botão 3 ======= */
 
 #botoes .form {
-  transition: border .4s ease, width .4s ease, padding .4s ease;
+  transition:  border .4s ease, 
+    width .4s ease, 
+    padding .4s ease, 
+    border-bottom-right-radius .4s ease;
 }
+
 #botoes .form:hover {
   width: 50%;
   padding: 20px 0;
@@ -80,22 +91,57 @@ header h1 {
   border-right: 10px solid #f9f;
 }
 
-/* card 1 ======= */
-
 #cards .transition figure {
-  background-position: center bottom -300px;
-  transition: height .4s cubic-bezier(.17,.67,.83,.67), background-position .4s cubic-bezier(.17,.67,.83,.67);
+  background-position: center top 90px;
+  transition: 
+    height .4s cubic-bezier(.17,.67,.83,.67),
+    background-position .4s cubic-bezier(.17,.67,.83,.67);
 }
 
 #cards .transition:hover figure {
-  height: 100px;
-  background-position: center bottom -250px;
+  height: 120px;
+  background-position: center top -20px;
 }
 
-/* card 2 ======= */
+#cards .shadow {
+  overflow: unset;
+  top: 0px;
+  border: 0;
+  /* box-shadow: 0px 6px 12px #999; */
+  /* box-shadow: 0 0 0 #999; */
+  transition: top .4s ease, box-shadow .4s ease;
+}
 
-#cards .shadow p {
-  margin: 20px 0 0;
+#cards .shadow .border {
+  border: 3px solid #000;
+  border-radius: 20px;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+#cards .shadow figure {
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+#cards .shadow:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 5px 5px #f9f;
+  border-radius: 20px;
+  transition: box-shadow .4s ease;
+}
+#cards .shadow:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-shadow: 5px 0 5px #09f;
+  border-radius: 20px;
+  transition: box-shadow .4s ease;
 }
 
 #cards .shadow:hover {
@@ -103,143 +149,125 @@ header h1 {
   box-shadow: 0px 6px 12px #999;
 }
 
-/* card 3 ======= */
+#cards .shadow:hover::before {
+  box-shadow: 0 10px 10px #f9f;
+}
+#cards .shadow:hover::after {
+  box-shadow: 10px 0 10px #09f;
+}
+
+
+
+
+
 
 .flip {
-  background-color: transparent;
   perspective: 1000px;
 }
 
 .flip .flip-inner {
   overflow: visible;
   position: relative;
-  background-color: transparent;
-  transition: transform 0.6s;
   transform-style: preserve-3d;
-  border: none;
-  cursor: pointer;
+  transform: rotateY(0deg);
+  background-color: transparent;
+  transition: transform .6s ease;
 }
 
-.flip:hover .flip-inner {
+.flip .flip-inner:hover {
   transform: rotateY(180deg);
 }
 
-.flip .flip-front, .flip .flip-back {
+.flip .flip-front, 
+.flip .flip-back {
+  backface-visibility: hidden;
   position: absolute;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden;
-  border: 3px solid #000;
-  border-radius: 20px;
-}
-
-.flip .flip-front {
   background-color: #ff9;
-}
-
-.flip .flip-back {
-  background-image: linear-gradient(45deg, #f9f, #ff9);
-  transform: rotateY(180deg);
+  border-radius: 20px;
 }
 
 .flip img {
   display: block;
   width: 100%;
-  object-fit: cover;
   height: 100%;
+  object-fit: contain;
 }
 
+.flip .flip-back {
+  background: linear-gradient(45deg, #f9f, #ff9);
+  transform: rotateY(180deg);
+}
 
-/* cursor 1 ======= */
-#cursor .unicorn button {
-  box-shadow: 0px 0px #09f;
+/* Cursor */
+
+#cursor .unicorn .btn {
   border: 3px solid #f9f;
   color: #09f;
-  cursor: 
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='128' viewport='0 0 100 100' style='font-size:64px;'><text y='50%'>🦄</text></svg>")
-    16 0,
-    auto;
+  box-shadow: 0px 0px #09f;
   transition: box-shadow .4s ease;
+  cursor: 
+  url("data:image/svg+xml; utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='128' viewport='0 0 100 100' style='font-size:84px;'><text y='50%'>🦄</text></svg>") 16 0, auto;
 }
 
-#cursor .unicorn button:hover {
-  box-shadow: 5px 6px #09f;
+#cursor .unicorn .btn:hover {
+  box-shadow: 4px 4px #09f;
 }
 
-/* cursor 2 ======= */
-#cursor .image button {
-  box-shadow: 0px 0px #f9f;
+
+#cursor .image .btn {
   border: 3px solid #ff9;
   color: #f9f;
-  cursor: 
-    url("../assets/cat-cursor.png")
-    32 0,
-    auto;
+  box-shadow: 0px 0px #ff9;
   transition: box-shadow .4s ease;
+  cursor: 
+  url("https://tainasimoes.github.io/crocancias/assets/cat-cursor.png") 16 0, auto;
 }
 
-#cursor .image button:hover {
-  box-shadow: 5px 6px #f9f;
+#cursor .image .btn:hover {
+  box-shadow: 4px 4px #09f;
 }
 
-/* load 1 ======= */
-#load .spin {
-  border-top: 16px solid transparent;
-  background:linear-gradient(90deg,#f9f,#09f, #ff9) border-box;
-  -webkit-mask: linear-gradient(#fff 0 0) padding-box,  linear-gradient(#fff 0 0);
-  -webkit-mask-composite: destination-out;
-  mask-composite: exclude;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 2s linear infinite;
+
+.mouse.hover {
+  background-color: blue;
 }
 
-/* load 2 ======= */
-#load .spin2 {
-  border-top: 16px solid #f9f;
-  border-bottom: 16px solid #f9f;
-  border-right: 16px solid #f3f3f3;
-  border-left: 16px solid #f3f3f3;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
+.mouse.down {
+  background-color: red;
 }
 
-/* load 3 ======= */
-#load .spin3 {
-  border-top: 16px solid #f9f;
-  border-bottom: 16px solid #f90;
-  border-right: 16px solid #09f;
-  border-left: 16px solid #90f;
-  -webkit-animation: spin .2s linear infinite; 
-  animation: spin .2s linear infinite;
-}
-
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* cursor 1 ======= */
-#mouse .mouse {
-  background-color: #f9f;
-  transition: background-color .4s ease;
-}
-#mouse .hover {
-  background-color: #ff9;
-}
-#mouse .down {
-  background-color: #09f;
-} 
-
-.darkmode {
-  background-color: #000;
+.toggle-icon {
+  transition: left .4s ease !important;
+  background-color: green x
 }
 
 .darkmode .toggle-icon {
-  background-color: #999;
-  left: calc(100% - 45px);
+  left: calc(100% - 45px)
+}
+
+.sun {
+  background-color: orange !important;
+}
+
+.moon {
+  background-color: purple !important;
+}
+
+
+#load .spin2 {
+  border: 16px solid transparent;
+  border-top: 16px solid #f9f;
+  border-bottom: 16px solid #f9f;
+  animation: spin 1s alternate infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(60deg);
+  }
 }
